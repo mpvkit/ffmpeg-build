@@ -5,8 +5,7 @@ on:
     inputs:
       version:
         description: 'Version to release'
-        required: true
-        default: '7.0.1'
+        default: ''
 
 jobs:
   build:
@@ -16,6 +15,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Version to release
+        uses: jannekem/run-python-script-action@v1
+        with:
+          script: |
+            import re
+
+            file_path = './Sources/BuildScripts/XCFrameworkBuild/main.swift'
+            with open(file_path, 'r', encoding='utf-8') as file:
+              content = file.read()
+            ffmpegVersion = re.search(r'(case .FFmpeg[^"]+?)"(.+?)"', content).group(2)
+            print(f'ffmpeg version: {ffmpegVersion}')
+            releaseVersion = '${{ github.event.inputs.version }}' or ffmpegVersion
+            print(f'release version: {releaseVersion}')
+            set_env('FFMPEG_VERSION', ffmpegVersion)
+            set_env('RELEASE_VERSION', releaseVersion)
+
+            
       - name: Install dependencies
         run: |
           brew install autoconf
@@ -99,12 +115,12 @@ jobs:
       - name: Upload binary to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: ${{ github.event.inputs.version }}
-          tag_name: ${{ github.event.inputs.version }}
+          name: ${{ env.FFMPEG_VERSION }}
+          tag_name: ${{ env.RELEASE_VERSION }}
           files: |
             ./dist/release/*.txt
             ./dist/release/*.zip
-          prerelease: ${{ contains(github.event.inputs.version, 'alpha') || contains(github.event.inputs.version, 'beta') }}
+          prerelease: ${{ contains(env.RELEASE_VERSION, 'alpha') || contains(env.RELEASE_VERSION, 'beta') }}
           generate_release_notes: true
           fail_on_unmatched_files: true
           
