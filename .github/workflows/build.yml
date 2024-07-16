@@ -15,18 +15,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Version to release
+      - name: Check version to release
         uses: jannekem/run-python-script-action@v1
         with:
           script: |
             import re
+
+            def normalize_version(version_string):
+              version_string = re.sub(r'[^.0-9]+|-.+', '', version_string)
+              parts = re.split(r'\.', version_string)
+              major = int(parts[0])
+              minor = int(parts[1]) if len(parts) > 1 else 0
+              patch = int(parts[2]) if len(parts) > 2 else 0
+              return f"{major}.{minor}.{patch}"
 
             file_path = './Sources/BuildScripts/XCFrameworkBuild/main.swift'
             with open(file_path, 'r', encoding='utf-8') as file:
               content = file.read()
             ffmpegVersion = re.search(r'(case .FFmpeg[^"]+?)"(.+?)"', content).group(2)
             print(f'ffmpeg version: {ffmpegVersion}')
-            releaseVersion = '${{ github.event.inputs.version }}' or ffmpegVersion
+            releaseVersion = normalize_version('${{ github.event.inputs.version }}' or ffmpegVersion)
             print(f'release version: {releaseVersion}')
             set_env('FFMPEG_VERSION', ffmpegVersion)
             set_env('RELEASE_VERSION', releaseVersion)
