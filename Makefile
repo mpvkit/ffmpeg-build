@@ -1,6 +1,6 @@
 # make only accept argument format: xxxx=xxxx, other format will treat as a target.
 # add [enable-split-platform enable-debug] to .PHONY can ignore target not exist error.
-.PHONY: help build clean enable-split-platform enable-debug
+.PHONY: help build clean enable-split-platform enable-debug enable-gpl
 
 help:
 	@echo "Usage: make [target]"
