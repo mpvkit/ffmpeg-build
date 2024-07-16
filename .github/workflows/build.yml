@@ -34,7 +34,7 @@ jobs:
               content = file.read()
             ffmpegVersion = re.search(r'(case .FFmpeg[^"]+?)"(.+?)"', content).group(2)
             print(f'ffmpeg version: {ffmpegVersion}')
-            releaseVersion = normalize_version('${{ github.event.inputs.version }}' or ffmpegVersion)
+            releaseVersion = '${{ github.event.inputs.version }}' or normalize_version(ffmpegVersion)
             print(f'release version: {releaseVersion}')
             set_env('FFMPEG_VERSION', ffmpegVersion)
             set_env('RELEASE_VERSION', releaseVersion)
