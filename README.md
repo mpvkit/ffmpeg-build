@@ -1,6 +1,6 @@
 # ffmpeg-build
  
-[![ffmpeg](https://img.shields.io/badge/ffmpeg-n7.0-blue.svg)](https://github.com/FFmpeg/FFmpeg)
+[![GitHub Release](https://img.shields.io/github/v/release/mpvkit/ffmpeg-build?display_name=release)](https://github.com/FFmpeg/FFmpeg)
 [![license](https://img.shields.io/github/license/mpvkit/ffmpeg-build)](https://github.com/mpvkit/ffmpeg-build/main/LICENSE)
 
 build scripts for [FFmpeg](https://github.com/FFmpeg/FFmpeg)
