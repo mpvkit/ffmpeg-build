@@ -29,4 +29,4 @@ make help
 
 `ffmpeg-build` source alone is licensed under the LGPL v3.0.
 
-`FFmpeg` bundles (`frameworks`, `xcframeworks`) are also licensed under the LGPL v3.0. However, if the source code is built using the optional `enable-gpl` flag or prebuilt binaries with ``-GPL` postfix are used, then `FFmpeg` bundles become subject to the GPL v3.0.
+`FFmpeg` bundles (`frameworks`, `xcframeworks`) are also licensed under the LGPL v3.0. However, if the source code is built using the optional `enable-gpl` flag or prebuilt binaries with `-GPL` postfix are used, then `FFmpeg` bundles become subject to the GPL v3.0.
