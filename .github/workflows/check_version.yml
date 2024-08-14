@@ -63,6 +63,6 @@ jobs:
             ./Sources/BuildScripts/XCFrameworkBuild/main.swift
             ./README.md
           title: "bump version to ${{ env.LATEST_VERSION }}"
-          body: "https://github.com/FFmpeg/FFmpeg/blob/master/Changelog\n"
+          body: "https://github.com/FFmpeg/FFmpeg/blob/${{ env.LATEST_VERSION }}/Changelog\n"
           commit-message: "chore: bump version to ${{ env.LATEST_VERSION }}"
           

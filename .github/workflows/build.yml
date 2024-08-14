@@ -129,7 +129,7 @@ jobs:
             ./dist/release/*.txt
             ./dist/release/*.zip
           prerelease: ${{ contains(env.RELEASE_VERSION, 'alpha') || contains(env.RELEASE_VERSION, 'beta') }}
-          body: "https://github.com/FFmpeg/FFmpeg/blob/master/Changelog"
+          body: "https://github.com/FFmpeg/FFmpeg/blob/${{ env.FFMPEG_VERSION }}/Changelog\n"
           generate_release_notes: true
           fail_on_unmatched_files: true
           
