@@ -3,7 +3,7 @@ name: Check new version
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 1'
+    - cron: '0 0 1 * *' # every month first day
 
 jobs:
   build:
