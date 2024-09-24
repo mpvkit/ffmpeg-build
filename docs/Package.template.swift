@@ -8,12 +8,10 @@ let package = Package(
     products: [
         .library(
             name: "FFmpeg",
-            type: .static,
             targets: ["_FFmpeg"]
         ),
         .library(
             name: "FFmpeg-GPL",
-            type: .static,
             targets: ["_FFmpeg-GPL"]
         ),
     ],
@@ -21,10 +19,10 @@ let package = Package(
         .target(
             name: "_FFmpeg",
             dependencies: [
-                "Libavcodec", "Libavfilter", "Libavformat", "Libavutil", "Libswresample", "Libswscale",
+                "Libavcodec", "Libavdevice", "Libavfilter", "Libavformat", "Libavutil", "Libswresample", "Libswscale",
                 "Libssl", "Libcrypto", "Libass", "Libfreetype", "Libfribidi", "Libharfbuzz",
                 "MoltenVK", "Libshaderc_combined", "lcms2", "Libplacebo", "Libdovi", "Libunibreak",
-                "gmp", "nettle", "hogweed", "gnutls", "Libdav1d"
+                "gmp", "nettle", "hogweed", "gnutls", "Libdav1d", "Libuavs3d"
             ],
             path: "Sources/_FFmpeg",
             linkerSettings: [
@@ -46,10 +44,10 @@ let package = Package(
         .target(
             name: "_FFmpeg-GPL",
             dependencies: [
-                "Libavcodec-GPL", "Libavfilter-GPL", "Libavformat-GPL", "Libavutil-GPL", "Libswresample-GPL", "Libswscale-GPL",
+                "Libavcodec-GPL", "Libavdevice-GPL", "Libavfilter-GPL", "Libavformat-GPL", "Libavutil-GPL", "Libswresample-GPL", "Libswscale-GPL",
                 "Libssl", "Libcrypto", "Libass", "Libfreetype", "Libfribidi", "Libharfbuzz",
                 "MoltenVK", "Libshaderc_combined", "lcms2", "Libplacebo", "Libdovi", "Libunibreak",
-                "Libsmbclient", "gmp", "nettle", "hogweed", "gnutls", "Libdav1d"
+                "Libsmbclient", "gmp", "nettle", "hogweed", "gnutls", "Libdav1d", "Libuavs3d"
             ],
             path: "Sources/_FFmpeg-GPL",
             linkerSettings: [
@@ -72,6 +70,11 @@ let package = Package(
             name: "Libavcodec-GPL",
             url: "\(Libavcodec-GPL_url)",
             checksum: "\(Libavcodec-GPL_checksum)"
+        ),
+        .binaryTarget(
+            name: "Libavdevice-GPL",
+            url: "\(Libavdevice-GPL_url)",
+            checksum: "\(Libavdevice-GPL_checksum)"
         ),
         .binaryTarget(
             name: "Libavformat-GPL",
