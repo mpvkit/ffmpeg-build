@@ -465,11 +465,7 @@ private class BuildFFMPEG: BaseBuild {
             arguments.append("--enable-filter=color")
             arguments.append("--enable-filter=lut")
             arguments.append("--enable-filter=testsrc")
-            arguments.append("--disable-avdevice")
-            //            arguments.append("--enable-avdevice")
-            //            arguments.append("--enable-indev=lavfi")
         } else {
-            arguments.append("--disable-avdevice")
             arguments.append("--disable-programs")
         }
         //        if platform == .isimulator || platform == .tvsimulator {
