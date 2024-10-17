@@ -8,12 +8,10 @@ let package = Package(
     products: [
         .library(
             name: "FFmpeg",
-            type: .static,
             targets: ["_FFmpeg"]
         ),
         .library(
             name: "FFmpeg-GPL",
-            type: .static,
             targets: ["_FFmpeg-GPL"]
         ),
     ],
@@ -21,10 +19,10 @@ let package = Package(
         .target(
             name: "_FFmpeg",
             dependencies: [
-                "Libavcodec", "Libavfilter", "Libavformat", "Libavutil", "Libswresample", "Libswscale",
+                "Libavcodec", "Libavdevice", "Libavfilter", "Libavformat", "Libavutil", "Libswresample", "Libswscale",
                 "Libssl", "Libcrypto", "Libass", "Libfreetype", "Libfribidi", "Libharfbuzz",
                 "MoltenVK", "Libshaderc_combined", "lcms2", "Libplacebo", "Libdovi", "Libunibreak",
-                "gmp", "nettle", "hogweed", "gnutls", "Libdav1d"
+                "gmp", "nettle", "hogweed", "gnutls", "Libdav1d", "Libuavs3d"
             ],
             path: "Sources/_FFmpeg",
             linkerSettings: [
@@ -46,10 +44,10 @@ let package = Package(
         .target(
             name: "_FFmpeg-GPL",
             dependencies: [
-                "Libavcodec-GPL", "Libavfilter-GPL", "Libavformat-GPL", "Libavutil-GPL", "Libswresample-GPL", "Libswscale-GPL",
+                "Libavcodec-GPL", "Libavdevice-GPL", "Libavfilter-GPL", "Libavformat-GPL", "Libavutil-GPL", "Libswresample-GPL", "Libswscale-GPL",
                 "Libssl", "Libcrypto", "Libass", "Libfreetype", "Libfribidi", "Libharfbuzz",
                 "MoltenVK", "Libshaderc_combined", "lcms2", "Libplacebo", "Libdovi", "Libunibreak",
-                "Libsmbclient", "gmp", "nettle", "hogweed", "gnutls", "Libdav1d"
+                "Libsmbclient", "gmp", "nettle", "hogweed", "gnutls", "Libdav1d", "Libuavs3d"
             ],
             path: "Sources/_FFmpeg-GPL",
             linkerSettings: [
@@ -70,33 +68,38 @@ let package = Package(
         ),
         .binaryTarget(
             name: "Libavcodec-GPL",
-            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2/Libavcodec-GPL.xcframework.zip",
-            checksum: "3645a5acfe13773c13098da7fb2cde34806ef070479688e9c9d69e3125ba2888"
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libavcodec-GPL.xcframework.zip",
+            checksum: "38da2fdf8938075ebe12d71e0a0f6202cfd8d9e7c45c0c5e2ea81d1b10a9936b"
+        ),
+        .binaryTarget(
+            name: "Libavdevice-GPL",
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libavdevice-GPL.xcframework.zip",
+            checksum: "06a5e373565414ab36bddbfe0a213a5bc3df3d2cb82e704e4fb2a7dbf3fdeb48"
         ),
         .binaryTarget(
             name: "Libavformat-GPL",
-            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2/Libavformat-GPL.xcframework.zip",
-            checksum: "e9f7af9b1d6753ad4d0fd6832494b3c266661db11dddeb90cb2c88629e91455d"
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libavformat-GPL.xcframework.zip",
+            checksum: "bade8202ac9ba2b77537fe056c8f717b900f5efe5949dcfdced3709dfc5cf3ec"
         ),
         .binaryTarget(
             name: "Libavfilter-GPL",
-            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2/Libavfilter-GPL.xcframework.zip",
-            checksum: "3fd809cfb65abca839643dfde0a62bcc0e4d200b37bd6b18060ca2fd38483dcb"
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libavfilter-GPL.xcframework.zip",
+            checksum: "240fc85e55a80ec4471f62cc976f4fb65c758ff97a076dc0234b135feef6eec1"
         ),
         .binaryTarget(
             name: "Libavutil-GPL",
-            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2/Libavutil-GPL.xcframework.zip",
-            checksum: "e62fefac24c0f8f428b0b6cf71350febf63d5c16b01fb0b0995084e5167c7c5c"
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libavutil-GPL.xcframework.zip",
+            checksum: "e02b55c5449bb643fd69f68a08b38107431ac25d7a87d42ea33ee666074383cf"
         ),
         .binaryTarget(
             name: "Libswresample-GPL",
-            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2/Libswresample-GPL.xcframework.zip",
-            checksum: "38842558a2256c5d1c345a49dbd2cdcf30f211698b9dfcf1c9fa006c6aad988b"
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libswresample-GPL.xcframework.zip",
+            checksum: "b8d4b5d2a6db06b2e9bbdfd691d5ebb8a58325e38e228873aa2c1ee33250b366"
         ),
         .binaryTarget(
             name: "Libswscale-GPL",
-            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2/Libswscale-GPL.xcframework.zip",
-            checksum: "750e7fb43b483e4d8fff8f5f745cdb97bb1d6c5e6cf299aeb308a9f4d93546fa"
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libswscale-GPL.xcframework.zip",
+            checksum: "b3a1b347c71431687f051ab0f658645455ad221dbdd7d04b080404e6f0ae3aec"
         ),
         //AUTO_GENERATE_TARGETS_BEGIN//
 
@@ -171,6 +174,12 @@ let package = Package(
         ),
 
         .binaryTarget(
+            name: "Libuavs3d",
+            url: "https://github.com/mpvkit/libuavs3d-build/releases/download/1.2.1/Libuavs3d.xcframework.zip",
+            checksum: "893257fc73c61b87fb45ee9de7df6ac4a6967062d7cac2c8d136cd2774a04971"
+        ),
+
+        .binaryTarget(
             name: "Libdovi",
             url: "https://github.com/mpvkit/libdovi-build/releases/download/3.3.0/Libdovi.xcframework.zip",
             checksum: "ca4382ea4e17103fbcc979d0ddee69a6eb8967c0ab235cb786ffa96da5f512ed"
@@ -184,8 +193,8 @@ let package = Package(
 
         .binaryTarget(
             name: "Libshaderc_combined",
-            url: "https://github.com/mpvkit/libshaderc-build/releases/download/2024.1.0-fix/Libshaderc_combined.xcframework.zip",
-            checksum: "049236601b70155baeb78a124c8b30f3e4f31f5aa4c6d20370d58c62eca87ec3"
+            url: "https://github.com/mpvkit/libshaderc-build/releases/download/2024.2.0/Libshaderc_combined.xcframework.zip",
+            checksum: "1ccd9fce68ea29af030dceb824716fc16d1f4dcdc0b912ba366d5cb91d7b1add"
         ),
 
         .binaryTarget(
@@ -208,33 +217,33 @@ let package = Package(
 
         .binaryTarget(
             name: "Libavcodec",
-            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2/Libavcodec.xcframework.zip",
-            checksum: "60a6ffb5674ac18601404ad98be4356bacfabac11cdf036edf89d4497bde8e6f"
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libavcodec.xcframework.zip",
+            checksum: "a4827d96249d8494cfc954db12c8d9ead6c90fb13a2362f459a19d59b8b890f6"
         ),
         .binaryTarget(
             name: "Libavformat",
-            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2/Libavformat.xcframework.zip",
-            checksum: "9ba4b986ff04848389cb684ac806e327a1ec85c2fcfb3cf1fa656eabac6d4641"
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libavformat.xcframework.zip",
+            checksum: "7bbe1a5a6f2e25a389082e2e5565e0de96fc52f172ab48f9d241eb3f8814a694"
         ),
         .binaryTarget(
             name: "Libavfilter",
-            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2/Libavfilter.xcframework.zip",
-            checksum: "97ca4082494933ec0f1696ce2ca2958e91fb6ae5b72073fc8aba3b50cc08dd59"
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libavfilter.xcframework.zip",
+            checksum: "cfd66dc8ba3fa482e7815fb8edc55fc4b255e92b5e90bb36b379889bbf6010c8"
         ),
         .binaryTarget(
             name: "Libavutil",
-            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2/Libavutil.xcframework.zip",
-            checksum: "da1ef1cd20f4426238ad921e00355d6cb6004184e827d83b60e8b5dadf726362"
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libavutil.xcframework.zip",
+            checksum: "8a30723e5a714ca1e65822551f98a66e9c656f6193f418257bb65f936777d3e6"
         ),
         .binaryTarget(
             name: "Libswresample",
-            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2/Libswresample.xcframework.zip",
-            checksum: "ae2b87fae073d93763b919b591e380a3b57dd46659291fee5a3c646b75be0a41"
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libswresample.xcframework.zip",
+            checksum: "44cfec88e809715e0eddb694a68314cd0e7ffe12a108a96ca02f8fd1f6edab87"
         ),
         .binaryTarget(
             name: "Libswscale",
-            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2/Libswscale.xcframework.zip",
-            checksum: "6174974decbb9576f06f5390b706627ecff23eb9e9006b096e6661904cfce86f"
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libswscale.xcframework.zip",
+            checksum: "ffb9d351da2cb33d5c5897285c5dbf7f9c6cbb4eff8e9a9e37c9f8727389bbf1"
         ),
         //AUTO_GENERATE_TARGETS_END//
     ]
