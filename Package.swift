@@ -245,6 +245,11 @@ let package = Package(
             url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libswscale.xcframework.zip",
             checksum: "ffb9d351da2cb33d5c5897285c5dbf7f9c6cbb4eff8e9a9e37c9f8727389bbf1"
         ),
+        .binaryTarget(
+            name: "Libavdevice",
+            url: "https://github.com/mpvkit/ffmpeg-build/releases/download/7.0.2-fix/Libavdevice.xcframework.zip",
+            checksum: "457942c28acfb4730958d570391202625d0d5c58efc70811bd225b7ac6a58f86"
+        ),
         //AUTO_GENERATE_TARGETS_END//
     ]
 )

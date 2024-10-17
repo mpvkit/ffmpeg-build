@@ -3,7 +3,7 @@ name: Check new version
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 1 * *' # every month first day
+    - cron: '0 0 * * 1' # every week first day
 
 jobs:
   build:
@@ -39,12 +39,18 @@ jobs:
             def parse_version(ver):
               if '-' in ver or ver == '':
                 return 0
-              return int(re.sub(r'[^0-9]+', r'', ver))
+              version_string = re.sub(r'[^.0-9]+', r'', ver)
+              parts = re.split(r'\.', version_string)
+              major = int(parts[0])
+              minor = int(parts[1]) if len(parts) > 1 else 0
+              patch = int(parts[2]) if len(parts) > 2 else 0
+              return int("{major}.{minor}.{patch}")
 
             file_path = './Sources/BuildScripts/XCFrameworkBuild/main.swift'
             with open(file_path, 'r', encoding='utf-8') as file:
               content = file.read()
             oldVersion = re.search(r'(case .FFmpeg[^"]+?)"(.+?)"', content).group(2)
+            set_env('OLD_VERSION', oldVersion)
             print("ffmpeg old version:", oldVersion)
             newVersion = '${{ env.LATEST_VERSION }}'
             print("ffmpeg new version:", newVersion)
@@ -63,6 +69,8 @@ jobs:
             ./Sources/BuildScripts/XCFrameworkBuild/main.swift
             ./README.md
           title: "bump version to ${{ env.LATEST_VERSION }}"
-          body: "https://github.com/FFmpeg/FFmpeg/blob/${{ env.LATEST_VERSION }}/Changelog\n"
+          body: |
+            https://github.com/FFmpeg/FFmpeg/blob/${{ env.LATEST_VERSION }}/Changelog
+            https://github.com/FFmpeg/FFmpeg/compare/${{ env.OLD_VERSION }}...${{ env.LATEST_VERSION }}
           commit-message: "chore: bump version to ${{ env.LATEST_VERSION }}"
           

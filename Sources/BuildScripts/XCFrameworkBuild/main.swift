@@ -130,6 +130,11 @@ enum Library: String, CaseIterable {
                     checksum: ""
                 ),
                 .target(
+                    name: "Libavdevice",
+                    url: "https://github.com/mpvkit/ffmpeg-build/releases/download/\(BaseBuild.options.releaseVersion)/Libavdevice.xcframework.zip",
+                    checksum: ""
+                ),
+                .target(
                     name: "Libavformat",
                     url: "https://github.com/mpvkit/ffmpeg-build/releases/download/\(BaseBuild.options.releaseVersion)/Libavformat.xcframework.zip",
                     checksum: ""
