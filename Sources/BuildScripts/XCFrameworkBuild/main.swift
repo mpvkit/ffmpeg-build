@@ -530,7 +530,7 @@ private class BuildFFMPEG: BaseBuild {
         // ,"--disable-rdft"
         // ,"--disable-fft"
         // Hardware accelerators:
-        "--disable-d3d11va", "--disable-dxva2", "--disable-vaapi", "--disable-vdpau",
+        "--disable-d3d11va", "--disable-d3d12va", "--disable-dxva2", "--disable-vaapi", "--disable-vdpau",
         // Individual component options:
         // ,"--disable-everything"
         // ./configure --list-muxers
