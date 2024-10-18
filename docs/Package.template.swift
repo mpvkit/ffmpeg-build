@@ -8,23 +8,23 @@ let package = Package(
     products: [
         .library(
             name: "FFmpeg",
-            targets: ["_FFmpeg"]
+            targets: ["FFmpeg"]
         ),
         .library(
             name: "FFmpeg-GPL",
-            targets: ["_FFmpeg-GPL"]
+            targets: ["FFmpeg-GPL"]
         ),
     ],
     targets: [
         .target(
-            name: "_FFmpeg",
+            name: "FFmpeg",
             dependencies: [
                 "Libavcodec", "Libavdevice", "Libavfilter", "Libavformat", "Libavutil", "Libswresample", "Libswscale",
                 "Libssl", "Libcrypto", "Libass", "Libfreetype", "Libfribidi", "Libharfbuzz",
                 "MoltenVK", "Libshaderc_combined", "lcms2", "Libplacebo", "Libdovi", "Libunibreak",
                 "gmp", "nettle", "hogweed", "gnutls", "Libdav1d", "Libuavs3d"
             ],
-            path: "Sources/_FFmpeg",
+            path: "Sources/FFmpeg",
             linkerSettings: [
                 .linkedFramework("AudioToolbox"),
                 .linkedFramework("CoreVideo"),
@@ -42,14 +42,14 @@ let package = Package(
             ]
         ),
         .target(
-            name: "_FFmpeg-GPL",
+            name: "FFmpeg-GPL",
             dependencies: [
                 "Libavcodec-GPL", "Libavdevice-GPL", "Libavfilter-GPL", "Libavformat-GPL", "Libavutil-GPL", "Libswresample-GPL", "Libswscale-GPL",
                 "Libssl", "Libcrypto", "Libass", "Libfreetype", "Libfribidi", "Libharfbuzz",
                 "MoltenVK", "Libshaderc_combined", "lcms2", "Libplacebo", "Libdovi", "Libunibreak",
                 "Libsmbclient", "gmp", "nettle", "hogweed", "gnutls", "Libdav1d", "Libuavs3d"
             ],
-            path: "Sources/_FFmpeg-GPL",
+            path: "Sources/FFmpeg-GPL",
             linkerSettings: [
                 .linkedFramework("AudioToolbox"),
                 .linkedFramework("CoreVideo"),
