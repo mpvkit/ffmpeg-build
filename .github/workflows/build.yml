@@ -36,7 +36,7 @@ jobs:
             print(f'ffmpeg version: {ffmpegVersion}')
             releaseVersion = '${{ github.event.inputs.version }}' or normalize_version(ffmpegVersion)
             print(f'release version: {releaseVersion}')
-            set_env('FFMPEG_VERSION', ffmpegVersion)
+            set_env('BUILD_VERSION', ffmpegVersion)
             set_env('RELEASE_VERSION', releaseVersion)
 
             
@@ -123,7 +123,7 @@ jobs:
           add: |
             - Package.swift
           message: |
-            chore: bump version to ${{ contains(env.RELEASE_VERSION, '-') && env.RELEASE_VERSION || env.FFMPEG_VERSION }}
+            chore: bump version to ${{ contains(env.RELEASE_VERSION, '-') && env.RELEASE_VERSION || env.BUILD_VERSION }}
           push: "origin HEAD:${{ github.ref_name }}"
           
       - name: Upload binary to GitHub Release
@@ -136,7 +136,7 @@ jobs:
             ./dist/release/*.zip
           prerelease: ${{ contains(env.RELEASE_VERSION, '-') }}
           body: |
-            https://github.com/FFmpeg/FFmpeg/blob/${{ env.FFMPEG_VERSION }}/Changelog
+            https://github.com/FFmpeg/FFmpeg/blob/${{ env.BUILD_VERSION }}/Changelog
           generate_release_notes: true
           fail_on_unmatched_files: true
           
