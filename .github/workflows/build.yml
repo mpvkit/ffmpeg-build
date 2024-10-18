@@ -122,7 +122,8 @@ jobs:
           default_author: github_actions
           add: |
             - Package.swift
-          message: "chore: bump version to ${{ env.FFMPEG_VERSION }}"
+          message: |
+            chore: bump version to ${{ contains(env.RELEASE_VERSION, '-') && env.RELEASE_VERSION || env.FFMPEG_VERSION }}
           push: "origin HEAD:${{ github.ref_name }}"
           
       - name: Upload binary to GitHub Release
