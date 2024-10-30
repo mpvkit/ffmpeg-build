@@ -118,4 +118,5 @@ temp/
 dist/
 *.log
 *.xcframework
+*.zip
 Package.resolved
